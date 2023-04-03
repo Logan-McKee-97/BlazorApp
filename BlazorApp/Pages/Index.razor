@@ -6,6 +6,19 @@
 
 Welcome to your new app.
 
+<p role="status">Reference Number: @referenceNumber</p>
+
+<button class="btn btn-primary" @onclick="findReference">Click me</button>
+
 <SurveyPrompt Title="How is Blazor working for you?" />
+
+@code {
+    private string referenceNumber;
+
+    private void findReference()
+    {
+        
+    }
+}
 
 <Counter />
