@@ -21,10 +21,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-//comment
-//Dylans comment
-//Claire's comment
-
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
