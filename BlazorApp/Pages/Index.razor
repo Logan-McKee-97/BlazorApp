@@ -1,24 +1,32 @@
 ﻿@page "/"
 
-<PageTitle>Index</PageTitle>
+<PageTitle>Pay Your TV License Fee</PageTitle>
 
-<h1>Hello, world!</h1>
+<h1>Pay Your TV License Here</h1>
+<input placeholder="Refernce Number" @bind="referenceNumber" />
+<button @onclick="searchReference">Search Reference Number</button>
+<br><br>
+
 
 Welcome to your new app.
+@code 
+{
+   private string? referenceNumber;
 
-<p role="status">Reference Number: @referenceNumber</p>
-
-<button class="btn btn-primary" @onclick="findReference">Click me</button>
-
-<SurveyPrompt Title="How is Blazor working for you?" />
-
-@code {
-    private string referenceNumber;
-
-    private void findReference()
+private void searchReference()
     {
-        
-    }
-}
+        if (!string.IsNullOrWhiteSpace(referenceNumber))
+        {
+            
 
-<Counter />
+
+
+            //todoItems.Add(new TodoItem { Id = maxId, Name = newTodo });
+            referenceNumber = string.Empty;
+        }
+    }
+
+
+
+}
+<SurveyPrompt Title="How is Blazor working for you?" />
