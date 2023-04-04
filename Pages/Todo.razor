@@ -12,12 +12,14 @@
 <br><br>-->
 
 <input class="form-control form-control-lg my-3" type="text" placeholder="Reference Number" @bind="referenceNumber" />
+<button @onclick="CheckRefNum">Check Ref</button>
 <div>
         <table>
 @foreach (var todo in todoItems)
     {
            if (todo.LetterReference==referenceNumber)
            {
+            CounterCorrect=CounterCorrect + 1;
             <tr><td>Fine payment summary details:</td></tr>
             <tr><td></td></tr>
             <tr>
@@ -32,18 +34,24 @@
         <tr>
             <td>
             TV Licence Number: @todo.TvLicenceNum
+
         </td>
         </tr>
         <tr>
             <td>
-                <button> Pay Fine</button>
+                <button class="btn" onclick="window.location.href = '/counter'">Pay Now</button>
             </td>
         </tr>
            }
            else
            {
-            <tr><td></td></tr>
-            <tr><td bgcolor="red">No such Letter Reference exists, please confirm you have entered it correctly and try again.</td></tr>
+            CounterWrong++;
+
+            if (CounterCorrect == 0 && CounterWrong <= 1)
+            {
+                <tr><td></td></tr>
+                <tr><td bgcolor="red">No such Letter Reference exists, please confirm you have entered it correctly and try again.</td></tr>
+            }
            }
     }
     </table>
@@ -51,9 +59,10 @@
 
 
 @code {
-    
-    private string referenceNumber;
-    private List<TodoItem> todoItems = new List<TodoItem>();
+    private int CounterCorrect = 0;
+    private int CounterWrong = 0;
+    private string? referenceNumber;
+    private List<TodoItem> todoItems = new List<TodoItem>(); 
 
     private string? newTodo;
 
@@ -61,6 +70,22 @@
     protected override bool ShouldRender() => shouldRender;
 
     protected override async Task OnInitializedAsync()
+    {
+        /*var itemList = (await todoItemService.GetTodoItems()).ToList();
+
+        if (itemList == null)
+        {
+            todoItems.Clear();
+        }
+        else
+        {
+            todoItems = itemList;
+        }
+
+        shouldRender = true;*/
+    }
+
+    private async Task CheckRefNum()
     {
         var itemList = (await todoItemService.GetTodoItems()).ToList();
 
@@ -74,8 +99,9 @@
         }
 
         shouldRender = true;
-    }
 
+
+    }
     private async Task AddTodoItem()
     {
         TodoItem newTodoItem = new TodoItem();
