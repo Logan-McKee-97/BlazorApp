@@ -21,7 +21,7 @@ public string? TvLicenceNum { get; set; }
 [JsonPropertyName("FineAmount")]
 public decimal? FineAmount { get; set; }
 
-[JsonPropertyName("FineAmount")]
-public string? FineAmount { get; set; }
+[JsonPropertyName("LetterReference")]
+public string? LetterReference { get; set; }
 
 }

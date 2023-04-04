@@ -2,29 +2,84 @@
 
 @using System.Text.Json
 @using System.Text.Json.Serialization
-@inject IHttpClientFactory ClientFactory
+@inject ITodoItemService todoItemService
 
-<h3>Todo (@todoItems.Count(todo => !todo.IsComplete))</h3>
+<h3>TV Licence Payment Details</h3>
 
-<input placeholder="Something todo" @bind="newTodo" />
+<!--<input placeholder="Something todo" @bind="newTodo" />
 <button @onclick="AddTodo">Add todo</button>
-<br><br>
+<br><br>-->
 
 <div>
-    <ul>
+        <table>
 @foreach (var todo in todoItems)
     {
-        <li>
-            <input @bind="todo.Name" />
-            <input type="checkbox" @bind="todo.IsComplete" />
-        </li>
+            <tr>
+                <td>Name: <input @bind="todo.Name" /></td>
+            <!--<input type="checkbox" @bind="todo.IsComplete" />-->
+            <!--<button @onclick="( async () => await DeleteTodoItem(todo))"> Delete todo</button>
+            <button @onclick="( async () => await UpdateTodoItem(todo))"> Update todo</button>-->
+            </tr>
+        
+        <tr><td>
+            Address Line 1: <input @bind="todo.Address1" />
+        </td>
+        </tr>
+        <tr>
+        <td>
+            Town: <input @bind="todo.Town" />
+        </td>
+        </tr>
+        <tr><td>
+            Postcode: <input @bind="todo.PostCode" />
+        </td>
+        </tr>
+        <tr>
+            <td>
+            TV Licence Number: <input @bind="todo.TvLicenceNum" />
+        </td>
+        </tr>
+        <tr>
+            <td>
+            Letter Reference: <input @bind="todo.LetterReference" />
+        </td>
+        </tr>
+        <tr>
+            <td>
+                <button @onclick="( async () => await UpdateTodoItem(todo))"> Update todo</button>
+            </td>
+        </tr>
     }
-    </ul>
+    </table>
 </div>
 
 
 @code {
-    private const string webApiUri = "http://localhost:5218/api/todoitems";
+    
+    private List<TodoItem> todoItems = new List<TodoItem>();
+
+    private string? newTodo;
+
+    private bool shouldRender;
+    protected override bool ShouldRender() => shouldRender;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var itemList = (await todoItemService.GetTodoItems()).ToList();
+
+        if (itemList == null)
+        {
+            todoItems.Clear();
+        }
+        else
+        {
+            todoItems = itemList;
+        }
+
+        shouldRender = true;
+    }
+    
+    /*private const string webApiUri = "http://localhost:5218/api/todoitems";
     private IEnumerable<TodoItem> todoItems = Array.Empty<TodoItem>();
     private string? newTodo;
 
@@ -52,24 +107,63 @@
         }
 
         shouldRender = true;
-    }
+    }*/
 
-    private void AddTodo()
+    private async Task AddTodoItem()
     {
-        if (!string.IsNullOrWhiteSpace(newTodo))
+        TodoItem newTodoItem = new TodoItem();
+        newTodoItem.Name = newTodo;
+        //newTodoItem.IsComplete = false;
+
+        var itemList = (await todoItemService.AddTodoItem(newTodoItem)).ToList();
+
+        if (itemList == null)
         {
-            
-
-
-
-            //todoItems.Add(new TodoItem { Id = maxId, Name = newTodo });
-            newTodo = string.Empty;
+            //todoItems.Clear();
         }
+        else
+        {
+            todoItems = itemList;
+        }
+
     }
 
-    private void CompleteTodo(long id)
+    private async Task DeleteTodoItem(TodoItem todoItem)
     {
+        TodoItem newTodoItem = new TodoItem();
+        newTodoItem.Name = newTodo;
+        //newTodoItem.IsComplete = false;
+
+        var itemList = (await todoItemService.DeleteTodoItem(todoItem)).ToList();
+
+        if (itemList == null)
+        {
+            //todoItems.Clear();
+        }
+        else
+        {
+            todoItems = itemList;
+        }
+
     }
 
+    private async Task UpdateTodoItem(TodoItem todoItem)
+    {
+        TodoItem newTodoItem = new TodoItem();
+        newTodoItem.Name = newTodo;
+        //newTodoItem.IsComplete = false;
+
+        var itemList = (await todoItemService.UpdateTodoItem(todoItem)).ToList();
+
+        if (itemList == null)
+        {
+            //todoItems.Clear();
+        }
+        else
+        {
+            todoItems = itemList;
+        }
+
+    }
     
 }

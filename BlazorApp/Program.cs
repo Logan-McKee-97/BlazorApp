@@ -1,6 +1,9 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using Microsoft.Net.Http.Headers;
 using BlazorApp.Data;
+using TodoItemManagement;
+using Microsoft.Extensions.Logging;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,7 +11,15 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
-builder.Services.AddHttpClient();
+// added to access webapi
+builder.Services.AddHttpClient<ITodoItemService,TodoItemService>("todoAPI", httpClient =>
+{
+    httpClient.BaseAddress = new Uri("http://localhost:5218/");
+    httpClient.DefaultRequestHeaders.Add( HeaderNames.Accept,"application/json");
+    httpClient.DefaultRequestHeaders.Add( HeaderNames.UserAgent,"HttpRequestsSample");
+});
+//builder.Services.AddLogging;
+//builder.Logging.AddDebug();
 
 var app = builder.Build();
 
@@ -16,9 +27,9 @@ var app = builder.Build();
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
+    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
-
 
 app.UseHttpsRedirection();
 
@@ -30,5 +41,3 @@ app.MapBlazorHub();
 app.MapFallbackToPage("/_Host");
 
 app.Run();
-
-//CL comment
