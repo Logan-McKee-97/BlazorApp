@@ -13,38 +13,28 @@
 <button @onclick="AddTodo">Add todo</button>
 <br><br>-->
 <h1 class="mb-3 py-3">Pay a fine</h1>
-<input class="form-control form-control-lg my-3" type="text" placeholder="Reference Number" @bind="referenceNumber" />
-<button @onclick="CheckRefNum">Check Ref</button>
-<p>The reference number you added was: @referenceNumber</p>
+<input class="form-group mx-sm-3 mb-2" type="text" placeholder="Reference Number" @bind="referenceNumber" />
+<button type="button" class="btn btn-success" @onclick="CheckRefNum">Check</button>
+
 <div>
-        <table>
+        <table class="table table-bordered">
 @foreach (var todo in todoItems)
     {
            if (todo.LetterReference==referenceNumber)
            {
-            CounterCorrect=CounterCorrect + 1;
-            <tr><td>Fine payment summary details:</td></tr>
-            <tr><td></td></tr>
-            <tr>
-                <td>Name: @todo.Name</td>
             
-            </tr>
+        CounterCorrect=CounterCorrect + 1;
+        <div class="py-5 my-5">
+           <h2>Fine payment summary details:</h2>
+          <p>
+         <b>Name:</b> @todo.Name <br>
+         <b>Address Line:</b> @todo.Address1, @todo.Town, @todo.PostCode <br>
         
-        <tr><td>
-            Address Line: @todo.Address1 , @todo.Town , @todo.PostCode
-        </td>
-        </tr>
-        <tr>
-            <td>
-            TV Licence Number: @todo.TvLicenceNum
-
-        </td>
-        </tr>
-        <tr>
-            <td>
-                <button class="btn" onclick="window.location.href = '/counter'">Pay Now</button>
-            </td>
-        </tr>
+        <h3><u>Fine amount:</u> <b>£@todo.FineAmount</b></h3>
+        
+        </p>
+        <button type="button" class="btn btn-danger my-4" onclick="window.location.href ='/Payment'">Pay Now</button>   
+        </div>
            }
            else
            {
