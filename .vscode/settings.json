@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/e80960cd-c802-476b-9e17-5aa63b75fd08/resourceGroups/TvFinesBlazorApp_group/providers/Microsoft.Web/sites/TvFinesBlazorApp",
+    "appService.deploySubpath": "BlazorApp\\bin\\Release\\net7.0\\publish"
+}
