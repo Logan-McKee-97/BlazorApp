@@ -4,13 +4,13 @@
 @using System.Text.Json.Serialization
 @inject ITodoItemService todoItemService
 
-<h3>TV Licence Payment Details</h3>
+<h3>TV Licence Fine Payment</h3>
 
 <!--<input placeholder="Something todo" @bind="newTodo" />
 <button @onclick="AddTodo">Add todo</button>
 <br><br>-->
 
-<input placeholder="Reference Number" @bind="referenceNumber" />
+Letter Reference # <input @bind="referenceNumber" />
 
 <div>
         <table>
@@ -18,44 +18,31 @@
     {
            if (todo.LetterReference==referenceNumber)
            {
+            <tr><td>Fine payment summary details:</td></tr>
+            <tr><td></td></tr>
             <tr>
-                <td>Name: <input @bind="todo.Name" /></td>
-            <!--<input type="checkbox" @bind="todo.IsComplete" />-->
-            <!--<button @onclick="( async () => await DeleteTodoItem(todo))"> Delete todo</button>
-            <button @onclick="( async () => await UpdateTodoItem(todo))"> Update todo</button>-->
+                <td>Name: @todo.Name</td>
+            
             </tr>
         
         <tr><td>
-            Address Line 1: <input @bind="todo.Address1" />
-        </td>
-        </tr>
-        <tr>
-        <td>
-            Town: <input @bind="todo.Town" />
-        </td>
-        </tr>
-        <tr><td>
-            Postcode: <input @bind="todo.PostCode" />
+            Address Line: @todo.Address1 , @todo.Town , @todo.PostCode
         </td>
         </tr>
         <tr>
             <td>
-            TV Licence Number: <input @bind="todo.TvLicenceNum" />
+            TV Licence Number: @todo.TvLicenceNum
         </td>
         </tr>
         <tr>
             <td>
-            Letter Reference: <input @bind="todo.LetterReference" />
-        </td>
-        </tr>
-        <tr>
-            <td>
-                <button @onclick="( async () => await UpdateTodoItem(todo))"> Update todo</button>
+                <button> Pay Fine</button>
             </td>
         </tr>
            }
            else
            {
+            <tr><td></td></tr>
             <tr><td bgcolor="red">No such Letter Reference exists, please confirm you have entered it correctly and try again.</td></tr>
            }
     }
@@ -88,36 +75,6 @@
 
         shouldRender = true;
     }
-    
-    /*private const string webApiUri = "http://localhost:5218/api/todoitems";
-    private IEnumerable<TodoItem> todoItems = Array.Empty<TodoItem>();
-    private string? newTodo;
-
-    private bool getTodoItemError;
-    private bool shouldRender;
-    protected override bool ShouldRender() => shouldRender;
-
-    protected override async Task OnInitializedAsync()
-    {
-        var request = new HttpRequestMessage(HttpMethod.Get,webApiUri);
-        request.Headers.Add("Accept", "application/json");
-        request.Headers.Add("User-Agent", "HttpClientFactory-Sample");
-
-        var client = ClientFactory.CreateClient();
-        var response = await client.SendAsync(request);
-
-        if (response.IsSuccessStatusCode)
-        {
-            using var responseStream = await response.Content.ReadAsStreamAsync();
-            todoItems = await JsonSerializer.DeserializeAsync<IEnumerable<TodoItem>>(responseStream);
-        }
-        else
-        {
-            getTodoItemError = true;
-        }
-
-        shouldRender = true;
-    }*/
 
     private async Task AddTodoItem()
     {
