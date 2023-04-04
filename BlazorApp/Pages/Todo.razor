@@ -10,10 +10,14 @@
 <button @onclick="AddTodo">Add todo</button>
 <br><br>-->
 
+<input placeholder="Reference Number" @bind="referenceNumber" />
+
 <div>
         <table>
 @foreach (var todo in todoItems)
     {
+           if (todo.LetterReference==referenceNumber)
+           {
             <tr>
                 <td>Name: <input @bind="todo.Name" /></td>
             <!--<input type="checkbox" @bind="todo.IsComplete" />-->
@@ -49,6 +53,11 @@
                 <button @onclick="( async () => await UpdateTodoItem(todo))"> Update todo</button>
             </td>
         </tr>
+           }
+           else
+           {
+            <tr><td bgcolor="red">No such Letter Reference exists, please confirm you have entered it correctly and try again.</td></tr>
+           }
     }
     </table>
 </div>
@@ -56,6 +65,7 @@
 
 @code {
     
+    private string referenceNumber;
     private List<TodoItem> todoItems = new List<TodoItem>();
 
     private string? newTodo;
