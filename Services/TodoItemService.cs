@@ -35,4 +35,11 @@ public class TodoItemService : ITodoItemService
         var result = await httpClient.PutAsJsonAsync<TodoItem>(endPoint + "/" + todoItem.Id,todoItem);
         return await GetTodoItems();
     }
+
+    public async Task<TodoItem> GetTodoItem(long Id)
+    {
+        var results = await httpClient.GetFromJsonAsync<TodoItem>(endPoint + "/" + Id);
+        return results;
+
+    }
 }

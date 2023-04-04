@@ -2,6 +2,7 @@
 
 @using System.Text.Json
 @using System.Text.Json.Serialization
+@inject NavigationManager navigationManager
 @inject ITodoItemService todoItemService
 
 <PageTitle>Pay Your TV License Fee</PageTitle>
@@ -14,8 +15,11 @@
 <br><br>-->
 <h1 class="mb-3 py-3">Pay a fine</h1>
 <input class="form-control form-control-lg my-3" type="text" placeholder="Reference Number" @bind="referenceNumber" />
+<input class="form-control form-control-lg my-3" type="text" placeholder="Address" @bind="Address" />
+<input class="form-control form-control-lg my-3" type="text" placeholder="Postcode" @bind="Postcode" />
 <button @onclick="CheckRefNum">Check Ref</button>
 <p>The reference number you added was: @referenceNumber</p>
+<p>@checkFail</p>
 <div>
         <table>
 @foreach (var todo in todoItems)
@@ -65,6 +69,12 @@
     private int CounterCorrect = 0;
     private int CounterWrong = 0;
     private string? referenceNumber;
+
+    private string? Address;
+
+    private string? checkFail;
+
+    private string? Postcode;
     private List<TodoItem> todoItems = new List<TodoItem>(); 
 
     private string? newTodo;
@@ -91,14 +101,25 @@
     private async Task CheckRefNum()
     {
         var itemList = (await todoItemService.GetTodoItems()).ToList();
-
+      
         if (itemList == null)
         {
             todoItems.Clear();
         }
         else
         {
+            var item = itemList.FirstOrDefault(e => e.LetterReference == referenceNumber && e.Address1 == Address && e.PostCode == Postcode);
             todoItems = itemList;
+            if (item != null)
+            {
+                checkFail = string.Empty;
+                navigationManager.NavigateTo($"Summary/{item.Id}");
+                
+            }
+            else 
+            {
+                checkFail = "Couldn't match your details please try again.";
+            }
         }
 
         shouldRender = true;

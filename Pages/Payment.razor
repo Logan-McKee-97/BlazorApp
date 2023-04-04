@@ -1,3 +1,23 @@
-<PageTitle>Counter</PageTitle>
+@page "/payment"
+<PageTitle>Payment</PageTitle>
 
-<h1>Payment</h1>
+<h1>Payment info</h1>
+
+<h1 class="mb-3 py-3">Pay a fine</h1>
+<EditForm Model="@paymentDetails" OnValidSubmit="@HandleValidSubmit">
+<DataAnnotationsValidator/>
+<ValidationSummary/>
+<input class="form-control form-control-lg my-3" type="text" placeholder="Card Number" @bind="paymentDetails.cardNumber" />
+<input class="form-control form-control-lg my-3" type="text" placeholder="Expiry Date" @bind="paymentDetails.expDate" />
+<input class="form-control form-control-lg my-3" type="text" placeholder="CVC" @bind="paymentDetails.cvc" />
+<button type = "submit" >Pay Now</button>
+</EditForm>
+
+@code
+{
+  private PaymentDetails paymentDetails = new();
+  private void HandleValidSubmit()
+  {
+
+  }
+}
