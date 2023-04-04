@@ -23,8 +23,8 @@
     {
            if (todo.LetterReference==referenceNumber)
            {
-            
-        CounterCorrect=CounterCorrect + 1;
+        
+        CounterCorrect++;
         <div class="py-5 my-5">
            <h2>Fine payment summary details:</h2>
           <p>
@@ -39,13 +39,13 @@
            }
            else
            {
-           <p class="bg-warning">No such Letter Reference exists, please confirm you have entered it correctly and try again.</p>
-           
-}
-           break;
+           CounterWrong++;
             }
            
-    
+    }
+   @if (CounterWrong > 0 && CounterCorrect == 0) {
+        <p class="bg-warning">No such Letter Reference exists, please confirm you have entered it correctly and try again.</p>
+    }
     </table>
 </div>
 
