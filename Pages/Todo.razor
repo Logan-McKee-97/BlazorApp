@@ -14,9 +14,12 @@
 <!--<input placeholder="Something todo" @bind="newTodo" />
 <button @onclick="AddTodo">Add todo</button>
 <br><br>-->
-<h1 class="mb-3 py-3">Pay a fine</h1>
-<input class="form-group mx-sm-3 mb-2" type="text" placeholder="Reference Number" @bind="referenceNumber" />
-<button type="button" class="btn btn-success" @onclick="CheckRefNum">Check</button>
+<h1 class="mb-3 py-5"><u>Make a TV License fine payment</u></h1>
+<div class="lh-lg fs-5">In order to pay your TV License fine online, you will need your <b>Reference Number</b> from your Fine notice letter. <br>
+No personal payment details are held - they are required for payment only and passed to the payment processor.</div>
+
+<input class="form-group mx-3 mb-1 my-5 px-4 py-3 text-muted" type="text" placeholder="Reference Number" @bind="referenceNumber" />
+<button type="button" class="btn btn-success my-4 px-4 py-3 mx-4 fw-bold border border-dark border border-3" @onclick="CheckRefNum">Check</button>
 
 
         
@@ -24,18 +27,28 @@
     {
            if (todo.LetterReference==referenceNumber)
            {
+        <i><h5 class="my-5">Please see below for confirmation details.</h5></i>
         isWrong = false;
-        <div class="py-5 my-5">
-           <h2>Fine payment summary details:</h2>
-          <p>
-         <b>Name:</b> @todo.Name <br>
-         <b>Address Line:</b> @todo.Address1, @todo.Town, @todo.PostCode <br>
-        
-        <h3><u>Fine amount:</u> <b>£@todo.FineAmount</b></h3>
-        
-        </p>
-        <button type="button" class="btn btn-danger my-4" onclick="window.location.href ='/Payment'">Pay Now</button>   
+        <div class="py-5 my-1 lh-lg">
+
+         <u><b><h1>Confirm Your Details:</h1></b></u>
+         <div class="d-flex flex-row">
+        <p class="fs-5">
+         <div><b>Name:</b></div> <i>@todo.Name</i><br>
+         <div><b>Address Line:</b></div> <i>@todo.Address1, @todo.Town, @todo.PostCode <br></i>
+         </p>
+         </div>
+         
+         </div>
+        <div class="d-flex flex-row border border-danger border border-4">
+        <div><h3 class="py-3 fw-bolder mx-5">Fine amount: <div class="text-danger">£@todo.FineAmount</div></h3></div>
+        <button type="button" class="btn btn-danger my-4 ms-5 px-3 py-1 fw-bold border border-dark border border-3><h3 class="py-4 fw-bolder" onclick="window.location.href ='/Payment'">Pay Now</button>
         </div>
+    
+        
+        
+        
+      
            }
          else
            {    
