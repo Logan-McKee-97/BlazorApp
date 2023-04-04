@@ -14,7 +14,8 @@ builder.Services.AddSingleton<WeatherForecastService>();
 // added to access webapi
 builder.Services.AddHttpClient<ITodoItemService,TodoItemService>("todoAPI", httpClient =>
 {
-    httpClient.BaseAddress = new Uri("http://localhost:5218/");
+    // httpClient.BaseAddress = new Uri("http://localhost:5218/");
+    httpClient.BaseAddress = new Uri("https://tvfinesapi.azurewebsites.net/");
     httpClient.DefaultRequestHeaders.Add( HeaderNames.Accept,"application/json");
     httpClient.DefaultRequestHeaders.Add( HeaderNames.UserAgent,"HttpRequestsSample");
 });
