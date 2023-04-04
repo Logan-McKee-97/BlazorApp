@@ -2,8 +2,11 @@
 
 @using System.Text.Json
 @using System.Text.Json.Serialization
+@using System.Threading
 @inject NavigationManager navigationManager
 @inject ITodoItemService todoItemService
+@inject NavigationManager uriHelper;
+
 
 <PageTitle>Pay Your TV License Fee</PageTitle>
 
@@ -14,10 +17,10 @@
 <button @onclick="AddTodo">Add todo</button>
 <br><br>-->
 <h1 class="mb-3 py-3">Pay a fine</h1>
-<input class="form-control form-control-lg my-3" type="text" placeholder="Reference Number" @bind="referenceNumber" />
-<input class="form-control form-control-lg my-3" type="text" placeholder="Address" @bind="Address" />
-<input class="form-control form-control-lg my-3" type="text" placeholder="Postcode" @bind="Postcode" />
-<button @onclick="CheckRefNum">Check Ref</button>
+<input class="form-group mx-sm-3 mb-2" type="text" placeholder="Reference Number" @bind="referenceNumber" />
+<input class="form-group mx-sm-3 mb-2" type="text" placeholder="Address" @bind="Address" />
+<input class="form-group mx-sm-3 mb-2" type="text" placeholder="Postcode" @bind="Postcode" />
+<button type="button" class="btn btn-success" @onclick="CheckRefNum">Check</button>
 <p>The reference number you added was: @referenceNumber</p>
 <p>@checkFail</p>
 <div>
@@ -26,48 +29,30 @@
     {
            if (todo.LetterReference==referenceNumber)
            {
-            CounterCorrect=CounterCorrect + 1;
-            <tr><td>Fine payment summary details:</td></tr>
-            <tr><td></td></tr>
-            <tr>
-                <td>Name: @todo.Name</td>
-            
-            </tr>
+        isWrong = false;
+        <div class="py-5 my-5">
+           <h2>Fine payment summary details:</h2>
+          <p>
+         <b>Name:</b> @todo.Name <br>
+         <b>Address Line:</b> @todo.Address1, @todo.Town, @todo.PostCode <br>
         
-        <tr><td>
-            Address Line: @todo.Address1 , @todo.Town , @todo.PostCode
-        </td>
-        </tr>
-        <tr>
-            <td>
-            TV Licence Number: @todo.TvLicenceNum
-
-        </td>
-        </tr>
-        <tr>
-            <td>
-                <button class="btn" onclick="window.location.href = '/counter'">Pay Now</button>
-            </td>
-        </tr>
+        <h3><u>Fine amount:</u> <b>£@todo.FineAmount</b></h3>
+        
+        </p>
+        <button type="button" class="btn btn-danger my-4" onclick="window.location.href ='/Payment'">Pay Now</button>   
+        </div>
            }
-           else
-           {
-            CounterWrong++;
-
-            if (CounterCorrect == 0 && CounterWrong <= 1)
-            {
-                <tr><td></td></tr>
-                <tr><td bgcolor="red">No such Letter Reference exists, please confirm you have entered it correctly and try again.</td></tr>
+         else
+           {    
+            isWrong = true;
             }
-           }
+    } 
+    @if (isWrong == true) {
+        <alert class="alert-warning"><br> You have entered an incorrect reference number. <br> Please try again.</alert>
     }
-    </table>
-</div>
-
 
 @code {
-    private int CounterCorrect = 0;
-    private int CounterWrong = 0;
+    private bool isWrong;
     private string? referenceNumber;
 
     private string? Address;
