@@ -3,7 +3,8 @@
 @using System.Text.Json
 @using System.Text.Json.Serialization
 @inject ITodoItemService todoItemService
-@inject NavigationManager _navigationManager
+@inject NavigationManager uriHelper;
+@using System.Threading
 
 <PageTitle>Pay Your TV License Fee</PageTitle>
 
@@ -17,14 +18,13 @@
 <input class="form-group mx-sm-3 mb-2" type="text" placeholder="Reference Number" @bind="referenceNumber" />
 <button type="button" class="btn btn-success" @onclick="CheckRefNum">Check</button>
 
-<div>
-        <table class="table table-bordered">
+
+        
 @foreach (var todo in todoItems)
     {
            if (todo.LetterReference==referenceNumber)
            {
-        
-        CounterCorrect++;
+        isWrong = false;
         <div class="py-5 my-5">
            <h2>Fine payment summary details:</h2>
           <p>
@@ -37,22 +37,17 @@
         <button type="button" class="btn btn-danger my-4" onclick="window.location.href ='/Payment'">Pay Now</button>   
         </div>
            }
-           else
-           {
-           CounterWrong++;
+         else
+           {    
+            isWrong = true;
             }
-           
+    } 
+    @if (isWrong == true) {
+        <alert class="alert-warning"><br> You have entered an incorrect reference number. <br> Please try again.</alert>
     }
-   @if (CounterWrong > 0 && CounterCorrect == 0) {
-        <p class="bg-warning">No such Letter Reference exists, please confirm you have entered it correctly and try again.</p>
-    }
-    </table>
-</div>
-
 
 @code {
-    private int CounterCorrect = 0;
-    private int CounterWrong = 0;
+    private bool isWrong;
     private string? referenceNumber;
     private List<TodoItem> todoItems = new List<TodoItem>(); 
 
