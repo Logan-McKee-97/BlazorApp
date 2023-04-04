@@ -23,8 +23,7 @@
 <button type="button" class="btn btn-success" @onclick="CheckRefNum">Check</button>
 <p>The reference number you added was: @referenceNumber</p>
 <p>@checkFail</p>
-<div>
-        <table>
+
 @foreach (var todo in todoItems)
     {
            if (todo.LetterReference==referenceNumber)
