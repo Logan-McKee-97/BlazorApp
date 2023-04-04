@@ -53,5 +53,5 @@ jobs:
         with:
           app-name: 'TvFinesBlazorApp'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_DDEB5F6155DF40ADBD99D84FA330128A }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_4310C8EEB84E44EBBAA622BAB9BF2A34 }}
           package: .
