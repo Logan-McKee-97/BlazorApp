@@ -3,6 +3,7 @@
 @using System.Text.Json
 @using System.Text.Json.Serialization
 @inject ITodoItemService todoItemService
+@inject NavigationManager _navigationManager
 
 <PageTitle>Pay Your TV License Fee</PageTitle>
 
@@ -38,15 +39,13 @@
            }
            else
            {
-            CounterWrong++;
-
-            if (CounterCorrect == 0 && CounterWrong <= 1)
-            {
-                <tr><td></td></tr>
-                <tr><td bgcolor="red">No such Letter Reference exists, please confirm you have entered it correctly and try again.</td></tr>
+           <p class="bg-warning">No such Letter Reference exists, please confirm you have entered it correctly and try again.</p>
+           
+}
+           break;
             }
-           }
-    }
+           
+    
     </table>
 </div>
 
