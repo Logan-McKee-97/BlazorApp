@@ -3,15 +3,15 @@
 @using System.Text.Json
 @using System.Text.Json.Serialization
 @inject ITodoItemService todoItemService
+<PageTitle>Pay Your TV License Fee</PageTitle>
 
-<h3>TV Licence Fine Payment</h3>
+<h1 class="display-1 py-5 px-5 bg-black text-light">TV LICENSE FINE</h1>
 
 <!--<input placeholder="Something todo" @bind="newTodo" />
 <button @onclick="AddTodo">Add todo</button>
 <br><br>-->
 
-Letter Reference # <input @bind="referenceNumber" />
-
+<input class="form-control form-control-lg my-3" type="text" placeholder="Reference Number" @bind="referenceNumber" />
 <div>
         <table>
 @foreach (var todo in todoItems)
