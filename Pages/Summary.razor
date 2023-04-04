@@ -1,0 +1,59 @@
+﻿@page "/Summary/{Id}"
+
+@using System.Text.Json
+@using System.Text.Json.Serialization
+@inject ITodoItemService todoItemService
+
+<PageTitle>Payment Summary</PageTitle>
+
+<div>
+        <table>
+            <tr><td><h1>Fine payment summary details:</h1></td></tr>
+            <tr><td></td></tr>
+            <tr>
+                <td>Name: @todo?.Name</td>
+            
+            </tr>
+        
+        <tr><td>
+            Address Line: @todo?.Address1 , @todo?.Town , @todo?.PostCode
+        </td>
+        </tr>
+        <tr>
+            <td>
+            TV Licence Number: @todo?.TvLicenceNum
+
+        </td>
+        </tr>
+        <tr>
+            <td>
+                Fine Amount: @todo?.FineAmount
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button class="btn" onclick="window.location.href = '/payment'">Pay Now</button>
+            </td>
+        </tr>
+    
+    </table>
+</div>
+
+
+@code
+{
+    [Parameter]
+    public string? Id {get; set;}
+
+    public TodoItem todo {get; set;}
+
+    protected override async Task OnInitializedAsync()
+    {
+        long id;
+        
+       if (Int64.TryParse(Id, out id))
+       {
+            todo = await todoItemService.GetTodoItem(id);
+       }
+    }
+}
