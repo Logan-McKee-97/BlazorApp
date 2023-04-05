@@ -4,17 +4,17 @@
 
 <PageTitle>Payment</PageTitle>
 
-<h1>Payment info</h1>
-<h1 class="mb-3 py-3">Pay a fine</h1>
+<h1 class="mb-3 my-2 py-3 fs-1 fw-bold">Payment</h1>
+<div class="lh-lg fs-3 my-3">Enter your payment details below:</div>
 <EditForm Model="@paymentDetails" OnValidSubmit="@HandleValidSubmit">
 <DataAnnotationsValidator/>
 <ValidationSummary/>
-<input class="form-control form-control-lg my-3" type="text" placeholder="Name on Card" @bind="paymentDetails.cardName" />
-<input class="form-control form-control-lg my-3" type="text" placeholder="Card Number" @bind="paymentDetails.cardNumber" />
-<input class="form-control form-control-lg my-3" type="text" placeholder="Expiry Date" @bind="paymentDetails.expDate" />
-<input class="form-control form-control-lg my-3" type="text" placeholder="CVC" @bind="paymentDetails.cvc" />
-<button type = "submit" class="btn btn-danger my-4 ms-5 px-3 py-1 fw-bold border border-dark border border-3><h3 class="py-4 fw-bolder">Check Details</button>
- <button type="button" class="btn btn-danger my-4 ms-1 px-5 py-4 fw-bold border border-dark border border-3" @onclick="SubmitDetails"><h3 class="py-4 fw-bolder">Pay Now</h3></button>
+<input class="form-control form-control-lg my-5 py-3" type="text" placeholder="Name on Card" @bind="paymentDetails.cardName" />
+<input class="form-control form-control-lg my-5 py-3" type="text" placeholder="Card Number" @bind="paymentDetails.cardNumber" />
+<input class="form-control form-control-lg my-5 py-3" type="text" placeholder="Expiry Date" @bind="paymentDetails.expDate" />
+<input class="form-control form-control-lg my-5 py-3" type="text" placeholder="CVC" @bind="paymentDetails.cvc" />
+<button type = "submit" class="btn btn-success my-4 ms-5 px-4 py-2 fw-bold border border-dark border border-3">Check Details</button>
+ <button type="button" class="btn btn-danger my-4 ms-5 px-5 py-2 fw-bold border border-dark border border-3" @onclick="SubmitDetails">Pay Now</button>
 <p>@check</p>
 </EditForm>
 
