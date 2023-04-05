@@ -77,4 +77,19 @@ a, .btn-link {
     margin-inline: -40px;
 }
 
+.header-link1:hover {
+    
+        text-decoration: underline;
+        color: white;
+    }
 
+
+    .header-link2:hover {
+    
+        text-decoration: underline;
+        color: white;
+    }
+
+.header-sub-bar {
+    background-color: #93b8d2;
+}
