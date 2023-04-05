@@ -8,22 +8,29 @@
 @inject NavigationManager uriHelper;
 
 
-<PageTitle>Pay Your TV License Fee</PageTitle>
+<PageTitle>Pay Your TV Licence Fee</PageTitle>
 
 
-<center><h1 class="display-1 py-5 px-5 bg-black text-light">TV LICENSE FINE</h1></center>
-<div class="lh-lg fs-5">In order to pay your TV License fine online, you will need your <b>Reference Number</b> from your Fine notice letter. <br>
+<center><h1 class="display-1 py-5 px-5 bg-black text-light">TV LICENCE FINE</h1></center>
+<div class="lh-lg fs-3 my-5">In order to pay your TV Licence fine online, you will need your <b>Reference Number</b> from your Fine notice letter. <br>
 No personal payment details are held - they are required for payment only and passed to the payment processor.</div>
 
 <!--<input placeholder="Something todo" @bind="newTodo" />
 <button @onclick="AddTodo">Add todo</button>
 <br><br>-->
-<h1 class="mb-3 py-3">Pay a fine</h1>
-<input class="form-group mx-sm-3 mb-2" type="text" placeholder="Reference Number" @bind="referenceNumber" />
-<input class="form-group mx-sm-3 mb-2" type="text" placeholder="Address" @bind="Address" />
-<input class="form-group mx-sm-3 mb-2" type="text" placeholder="Postcode" @bind="Postcode" />
-<button type="button" class="btn btn-success" @onclick="CheckRefNum">Check</button>
+<div class="mb-3 py-3 fs-1 fw-bold">Pay a fine</div>
+<div class="fs-2">
+<div class="d-flex flex-column align-items-start">
+<p class="my-2">Enter your Reference Number:</p>
+<input class="form-group mx-sm-3 mb-2 py-2 my-4" type="text" placeholder="Reference Number" @bind="referenceNumber" />
+<p class="my-2">Enter your home address:</p>
+<input class="form-group mx-sm-3 mb-2 py-2 my-4" type="text" placeholder="Address" @bind="Address" />
+<p class="my-2">Enter your postcode:</p>
+<input class="form-group mx-sm-3 mb-2 py-2 my-4" type="text" placeholder="Postcode" @bind="Postcode" />
+<button type="button" class="btn btn-success my-4 px-5 py-4 mx-3 fw-bold border border-dark border border-3 fs-3" @onclick="CheckRefNum">Check</button>
 <p>@checkFail</p>
+</div>
+</div>
 
    
 
