@@ -40,15 +40,14 @@
 <div class="fs-4">
 <div class="d-flex flex-column align-items-start">
 <p class="my-2">Enter your Reference Number:</p>
-<input class="form-group mx-sm-3 mb-2 py-2 my-4" type="text" placeholder="Reference Number" @bind="referenceNumber" />
+<input class="form-group mx- sm-3 mb-2 py-1 my-2" type="text" placeholder="Reference Number" @bind="referenceNumber" />
 
 
 
+<p class="my-2">Enter your Postcode:</p>
+<input class="form-group mx- sm-3 mb-2 py-1 my-2" type="text" placeholder="Postcode" @bind="Postcode" />
 
-<p class="my-2">Enter your postcode:</p>
-<input class="form-group mx-sm-3 mb-2 py-2 my-4" type="text" placeholder="Postcode" @bind="Postcode" />
-
-<button type="button" class="btn btn-success my-4 px-3 py- mx-3 fw-bold border border-dark border border-3 fs-3" @onclick="CheckRefNum">Check</button>
+<button type="button" class="btn btn-success my-4 px-3 py- mx- fw-bold border border-dark border border-2 fs-3" @onclick="CheckRefNum">Check</button>
 <p class="text-danger fw-bold">@checkFail</p>
 </div>
 </div>
