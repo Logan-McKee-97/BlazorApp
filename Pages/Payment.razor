@@ -7,10 +7,11 @@
 <EditForm Model="@paymentDetails" OnValidSubmit="@HandleValidSubmit">
 <DataAnnotationsValidator/>
 <ValidationSummary/>
+<input class="form-control form-control-lg my-3" type="text" placeholder="Name on Card" @bind="paymentDetails.cardName" />
 <input class="form-control form-control-lg my-3" type="text" placeholder="Card Number" @bind="paymentDetails.cardNumber" />
 <input class="form-control form-control-lg my-3" type="text" placeholder="Expiry Date" @bind="paymentDetails.expDate" />
 <input class="form-control form-control-lg my-3" type="text" placeholder="CVC" @bind="paymentDetails.cvc" />
-<button type = "submit" >Pay Now</button>
+<button type="button" class="btn btn-danger my-4 ms-5 px-3 py-1 fw-bold border border-dark border border-3><h3 class="py-4 fw-bolder" onclick="window.location.href ='/SummaryPayment/id'">Pay Now</button>
 </EditForm>
 
 @code
