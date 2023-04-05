@@ -1,4 +1,5 @@
 ﻿@page "/SummaryPayment"
+@page "/SummaryPayment/{CCard}"
 
 @using System.Text.Json
 @using System.Text.Json.Serialization
@@ -10,7 +11,7 @@
        
          <div class="d-flex flex-row">
         <p class="fs-5"></p>
-         <div><b>Payment made from card ending in:</b></div>
+         <div><b>Payment made from card ending in: @CCard</b></div>
          </div>  
         
         <button type="button" class="btn btn-danger my-4 ms-5 px-3 py-1 fw-bold border border-dark border border-3><h3 class="py-4 fw-bolder" onclick="window.location.href ='/'">Continue</button>
@@ -20,17 +21,6 @@
 @code
 {
     [Parameter]
-    public string? Id {get; set;}
+    public string? CCard {get; set;}
 
-    public TodoItem todo {get; set;}
-
-    protected override async Task OnInitializedAsync()
-    {
-        long id;
-        
-       if (Int64.TryParse(Id, out id))
-       {
-            todo = await todoItemService.GetTodoItem(id);
-       }
-    }
 }
