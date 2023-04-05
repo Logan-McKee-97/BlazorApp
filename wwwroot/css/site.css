@@ -72,3 +72,7 @@ a, .btn-link {
 {
     background-color: #19171c!important;
 }
+
+.header-image {
+    margin-inline: -40px;
+}
