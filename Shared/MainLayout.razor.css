@@ -12,7 +12,8 @@ main {
 
 
 .sidebar {
-    background-color: black;
+    background-color: #292b2c;
+    margin-right: 5px;
 
 }
 
@@ -22,6 +23,7 @@ main {
     justify-content: flex-end;
     height: 3.5rem;
     display: flex;
+    margin-left: 35px;
     align-items: center;
 }
 
