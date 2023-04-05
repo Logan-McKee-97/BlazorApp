@@ -24,7 +24,7 @@
  <div class>
   <div style="text-align:left">
     <h1 class="fw-bold my-5">Contact Us</h1>
-    <p class="fs-3">Send us a message below:</p>
+    <p class="fs-3 mb-5">Send us a message below:</p>
   </div>
   <div class="row">
     <div class="column">
@@ -40,22 +40,23 @@
         </div>
         
 
-        <label class="mt-5 fs-4" for="subject">Message:</label>
-       <textarea class="" id="subject" name="subject" placeholder="Write something.." style="height:170px"></textarea> 
-        <button class="btn-primary py-2" @onclick="SubmitMessage">Submit</button>
+        <label class="mt-5 fs-4 mb-2" for="subject">Message:</label>
+       <div><textarea class="mb-5 px-2" id="subject" name="subject" placeholder="Write something.." rows="4" cols="75"></textarea></div>
 
       <div id="container"></div>
 
-  @if (isClicked == true) {
-    <div class="alert alert-warning text-center" role="alert">
-   Thank you for your message, we aim to respond within 3-5 working days.
-    </div>
-  }
       
       
     
   </div>
 </div> 
+
+<button type="button" class="btn btn-primary my-4 px-3 fw-bold border border-dark border border-2 fs-4" @onclick="SubmitMessage">Submit</button>
+  @if (isClicked == true) {
+    <div class="alert alert-warning text-center mt-5 fs-4" role="alert">
+   Thank you for your message, we aim to respond within 3-5 working days.
+    </div>
+  }
 
 @code {
 private bool isClicked = false;
