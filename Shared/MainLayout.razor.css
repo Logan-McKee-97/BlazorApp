@@ -23,6 +23,7 @@ main {
 .sidebar {
     background-color: #19171c;
     margin-right: 0px;
+    margin-top: 0px;
 
 }
 
@@ -84,5 +85,10 @@ main {
         padding-left: 2rem !important;
         padding-right: 1.5rem !important;
     }
+
+    .nav-item px-3 {
+        margin-top: 100px!important;
+    }
+
 }
 
