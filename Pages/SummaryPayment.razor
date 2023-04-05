@@ -1,4 +1,4 @@
-﻿@page "/SummaryPayment/{Id}"
+﻿@page "/SummaryPayment"
 
 @using System.Text.Json
 @using System.Text.Json.Serialization
@@ -6,22 +6,15 @@
 
 <PageTitle>Payment Summary</PageTitle>
 
-<i><h5 class="my-5">Please see below your payment detials</h5></i>
-        <div class="py-5 my-1 lh-lg">
-
-         <u><b><h1>Confirm Your Details:</h1></b></u>
+<i><h5 class="my-5">Thank you for your payment</h5></i>
+       
          <div class="d-flex flex-row">
         <p class="fs-5">
-         <div><b>Name:</b></div> <i>@todo?.Name</i><br>
-         <div><b>Address Line:</b></div> <i>@todo?.Address1, @todo?.Town, @todo?.PostCode <br></i>
-         </p>
-         </div>
-         
-         </div>
-        <div class="d-flex flex-row border border-danger border border-4">
-        <div><h3 class="py-3 fw-bolder mx-5">Fine amount: <div class="text-danger">£@todo?.FineAmount</div></h3></div>
-        <button type="button" class="btn btn-danger my-4 ms-5 px-3 py-1 fw-bold border border-dark border border-3><h3 class="py-4 fw-bolder" onclick="window.location.href ='/Payment'">Pay Now</button>
-        </div>
+         <div><b>Payment made from card ending in:</b></div>
+         </div>  
+        
+        <button type="button" class="btn btn-danger my-4 ms-5 px-3 py-1 fw-bold border border-dark border border-3><h3 class="py-4 fw-bolder" onclick="window.location.href ='/'">Continue</button>
+
 
 
 @code

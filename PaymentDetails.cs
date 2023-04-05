@@ -10,7 +10,7 @@ public string? cardNumber { get; set; }
 
 [JsonPropertyName("expDate")]
 [Required]
-[RegularExpression ("[0-1][0-3]/[0-9][0-9]", ErrorMessage = "Invalid must follow format XX/XX")]
+[RegularExpression ("0[1-9]|1[0-12]", ErrorMessage = "Invalid must follow format XX/XX")]
 public string? expDate { get; set; }
 
 [JsonPropertyName("cvc")]
