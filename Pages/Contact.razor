@@ -1,26 +1,45 @@
 @page "/contact"
 <PageTitle>Contact</PageTitle>
 <head></head>
- <div class="container">
+ <div class>
   <div style="text-align:left">
-    <h2>Contact Us</h2>
-    <p>Send us a message below:</p>
+    <h1 class="fw-bold">Contact Us</h1>
+    <p class="fs-3">Send us a message below:</p>
   </div>
   <div class="row">
     <div class="column">
-      <img src="/w3images/map.jpg" style="width:100%">
     </div>
+    
     <div class="column">
       <form action="/action_page.php">
-        <label for="fname">First Name</label>
-        <input type="text" id="fname" name="firstname" placeholder="Your name..">
-        <label for="lname">Last Name</label>
-        <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+        <label class="fs-4" for="fname">First Name</label>
+        <input class="ms-3 py-2" type="text" id="fname" name="firstname" placeholder="Your name..">
+        <label class="ms-4 fs-4" for="lname">Last Name</label>
+        <input class="ms-3 py-2" type="text" id="lname" name="lastname" placeholder="Your last name..">
+        </form>
+        </div>
+        
 
-        <label for="subject">Subject</label>
-        <textarea id="subject" name="subject" placeholder="Write something.." style="height:170px"></textarea>
-        <input type="submit" value="Submit">
-      </form>
+        <label class="mt-5 fs-4" for="subject">Message:</label>
+       <textarea class="" id="subject" name="subject" placeholder="Write something.." style="height:170px"></textarea> 
+        <button class="btn-primary py-2" @onclick="SubmitMessage">Submit</button>
+
+      <div id="container"></div>
+
+  @if (isClicked == true) {
+    <div class="alert alert-warning text-center" role="alert">
+   Thank you for your message, we aim to respond within 3-5 working days.
     </div>
+  }
+      
+      
+    
   </div>
 </div> 
+
+@code {
+private bool isClicked = false;
+private void SubmitMessage(){
+isClicked = true;
+}
+  }
