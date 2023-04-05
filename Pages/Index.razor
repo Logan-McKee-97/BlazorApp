@@ -12,7 +12,7 @@
 <PageTitle>Pay Your TV Licence Fine</PageTitle>
 
 <div class="bg-dark">
-<center><img src="https://burnham-highbridge-tc.gov.uk/wp-content/uploads/2021/06/TVL-Logo-Black.jpg" class="border border-dark border border-3"  style="width:360px;height:150px;"></center>
+<center><img src="https://burnham-highbridge-tc.gov.uk/wp-content/uploads/2021/06/TVL-Logo-Black.jpg" style="width:360px;height:150px;"></center>
 </div>
 <div class="lh-lg fs-3 my-5">To pay your TV Licence Fine online: <br> You will need your <b>Reference Number</b> from your <u>Fine Notice Letter</u>. <br></div>
 
@@ -20,7 +20,7 @@
 <button @onclick="AddTodo">Add todo</button>
 <br><br>-->
 <div class="mb-3 py-3 fs-1 fw-bold">Pay a fine</div>
-<div class="fs-2">
+<div class="fs-4">
 <div class="d-flex flex-column align-items-start">
 <p class="my-2">Enter your Reference Number:</p>
 <input class="form-group mx-sm-3 mb-2 py-2 my-4" type="text" placeholder="Reference Number" @bind="referenceNumber" />
@@ -74,9 +74,18 @@
     {
     
         var itemList = (await todoItemService.GetTodoItems()).ToList();
+        if(Address != null){
         Address = Address.ToLower();
-        Postcode = Postcode.ToLower();
-        referenceNumber = referenceNumber.ToLower();
+        }
+        if(referenceNumber != null)
+        {
+            referenceNumber = referenceNumber.ToLower();
+        }
+        if(Postcode != null)
+        {
+            Postcode = Postcode.ToLower();
+        }
+        
 
 
         if (itemList == null)

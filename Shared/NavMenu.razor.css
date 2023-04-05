@@ -76,3 +76,8 @@
         overflow-y: auto;
     }
 }
+
+.bg-dark
+{
+    background-color: #19171c!important;
+}
