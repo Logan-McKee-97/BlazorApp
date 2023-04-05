@@ -26,8 +26,6 @@
 <input class="form-group mx-sm-3 mb-2 py-2 my-4" type="text" placeholder="Reference Number" @bind="referenceNumber" />
 
 
-<p class="my-2">Enter your home address:</p>
-<input class="form-group mx-sm-3 mb-2 py-2 my-4" type="text" placeholder="Address" @bind="Address" />
 
 
 <p class="my-2">Enter your postcode:</p>
@@ -74,9 +72,7 @@
     {
     
         var itemList = (await todoItemService.GetTodoItems()).ToList();
-        if(Address != null){
-        Address = Address.ToLower();
-        }
+        
         if(referenceNumber != null)
         {
             referenceNumber = referenceNumber.ToLower();
@@ -94,7 +90,7 @@
         }
         else
         {
-            var item = itemList.FirstOrDefault(e => e.LetterReference == referenceNumber && e.Address1 == Address && e.PostCode == Postcode);
+            var item = itemList.FirstOrDefault(e => e.LetterReference == referenceNumber && e.PostCode == Postcode);
             todoItems = itemList;
             if (item != null)
             {
