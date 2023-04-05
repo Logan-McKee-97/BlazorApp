@@ -12,6 +12,8 @@
 
 
 <center><h1 class="display-1 py-5 px-5 bg-black text-light">TV LICENSE FINE</h1></center>
+<div class="lh-lg fs-5">In order to pay your TV License fine online, you will need your <b>Reference Number</b> from your Fine notice letter. <br>
+No personal payment details are held - they are required for payment only and passed to the payment processor.</div>
 
 <!--<input placeholder="Something todo" @bind="newTodo" />
 <button @onclick="AddTodo">Add todo</button>
@@ -21,44 +23,9 @@
 <input class="form-group mx-sm-3 mb-2" type="text" placeholder="Address" @bind="Address" />
 <input class="form-group mx-sm-3 mb-2" type="text" placeholder="Postcode" @bind="Postcode" />
 <button type="button" class="btn btn-success" @onclick="CheckRefNum">Check</button>
-<p>The reference number you added was: @referenceNumber</p>
 <p>@checkFail</p>
 
-@foreach (var todo in todoItems)
-    {
-           if (todo.LetterReference==referenceNumber)
-           {
-        <i><h5 class="my-5">Please see below for confirmation details.</h5></i>
-        isWrong = false;
-        <div class="py-5 my-1 lh-lg">
-
-         <u><b><h1>Confirm Your Details:</h1></b></u>
-         <div class="d-flex flex-row">
-        <p class="fs-5">
-         <div><b>Name:</b></div> <i>@todo.Name</i><br>
-         <div><b>Address Line:</b></div> <i>@todo.Address1, @todo.Town, @todo.PostCode <br></i>
-         </p>
-         </div>
-         
-         </div>
-        <div class="d-flex flex-row border border-danger border border-4">
-        <div><h3 class="py-3 fw-bolder mx-5">Fine amount: <div class="text-danger">£@todo.FineAmount</div></h3></div>
-        <button type="button" class="btn btn-danger my-4 ms-5 px-3 py-1 fw-bold border border-dark border border-3><h3 class="py-4 fw-bolder" onclick="window.location.href ='/Payment'">Pay Now</button>
-        </div>
-    
-        
-        
-        
-      
-           }
-         else
-           {    
-            isWrong = true;
-            }
-    } 
-    @if (isWrong == true) {
-        <alert class="alert-warning"><br> You have entered an incorrect reference number. <br> Please try again.</alert>
-    }
+   
 
 @code {
     private bool isWrong;
