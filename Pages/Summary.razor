@@ -6,21 +6,19 @@
 
 <PageTitle>Payment Summary</PageTitle>
 
-<i><h5 class="my-5">Please see below for confirmation details.</h5></i>
-        <div class="py-5 my-1 lh-lg">
-
-         <u><b><h1>Confirm Your Details:</h1></b></u>
-         <div class="d-flex flex-row">
+<center><h1 class="display-1 py-5 px-5 bg-black text-light">Payment Summary</h1></center>
+<h5 class="my-5">Please confirm that the details below are correct. If they are correct click the "Pay Now" button, otherwise click the "Cancel".</h5>
+        <!--<div class="py-5 my-1 lh-lg">
+            <u><b><h1>Confirm Your Details:</h1></b></u>
+         <div class="d-flex flex-row">-->
         <p class="fs-5">
-         <div><b>Name:</b></div> <i>@todo?.Name</i><br>
-         <div><b>Address Line:</b></div> <i>@todo?.Address1, @todo?.Town, @todo?.PostCode <br></i>
-         </p>
-         </div>
+         <div><b>Name:</b> @todo?.Name <b>Address Line:</b> @todo?.Address1, @todo?.Town, @todo?.PostCode <br></div>
+         </p><br>
          
-         </div>
         <div class="d-flex flex-row border border-danger border border-4">
         <div><h3 class="py-3 fw-bolder mx-5">Fine amount: <div class="text-danger">£@todo?.FineAmount</div></h3></div>
-        <button type="button" class="btn btn-danger my-4 ms-5 px-3 py-1 fw-bold border border-dark border border-3><h3 class="py-4 fw-bolder" onclick="window.location.href ='/Payment'">Pay Now</button>
+        <button type="button" class="btn btn-success my-4 ms-5 px-3 py-1 fw-bold border border-dark border border-3><h3 class="py-4 fw-bolder" onclick="window.location.href ='/Payment'">Pay Now</button>
+        <button type="button" class="btn btn-danger my-4 ms-5 px-3 py-1 fw-bold border border-dark border border-3><h3 class="py-4 fw-bolder" onclick="window.location.href ='/'">Cancel</button>
         </div>
 
 
