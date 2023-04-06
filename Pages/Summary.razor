@@ -14,6 +14,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="47" height="47" fill="white" class="bi bi-cash mb-2" viewBox="0 0 16 16"> 
   <path d="M8 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/>
   <path d="M0 4a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V4zm3 0a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2V6a2 2 0 0 1-2-2H3z"/> </svg>  
+  
 <span class="mx-3 fs-3 fw-bold text-white header-link1" aria-hidden="true"> Pay Fine </span>
 </NavLink>
 <NavLink class="nav-link" href="contact">
@@ -24,7 +25,7 @@
             </NavLink>
 </div>
 </div>
-
+<div class="text-center">
 <h5 class="my-5 fs-4">Please confirm that the details below are correct. <br> If they are correct click the "Pay Now" button, otherwise click "Cancel".</h5>
         <!--<div class="py-5 my-1 lh-lg">
             <u><b><h1>Confirm Your Details:</h1></b></u>
@@ -33,12 +34,19 @@
          <div class="fs-4"><b>Name:</b> @todo?.Name <br> 
          <b>Address Line:</b> @todo?.Address1, @todo?.Town, @todo?.PostCode <br></div>
          </p><br>
+         </div>
          
        <center>
-        <p class="border border-danger border-4"><h3 class="py-3 fw-bolder mx-5">Fine amount: <div class="text-danger">£@todo?.FineAmount</div></h3></p>
+        <div class="d-flex-column">
+        <div class="summary-border">
+        <h3 class="py-3 fw-bolder mx-2">Fine amount: <div class="text-danger">£@todo?.FineAmount</div></h3>
+        </div>
         
+         <div class="d-flex justify-content-center mt-4">
         <button type="button" class="btn btn-success my-4 px-4 py-2 mx-5 fw-bold border border-dark border border-3 fs-3><h3 class="py-4 fw-bolder" onclick="window.location.href ='/Payment'">Pay Now</button>
         <button type="button" class="btn btn-danger my-4 px-4 py-2 mx-5 fw-bold border border-dark border border-3 fs-3><h3 class="py-4 fw-bolder" onclick="window.location.href ='/'">Cancel</button>
+        </div>
+        </div>
        </center>
 
 

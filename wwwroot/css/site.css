@@ -93,4 +93,20 @@ a, .btn-link {
 .header-sub-bar {
     background-color: #93b8d2;
     margin: 0px;
+    padding: 240px;
+    border: 3px solid #19171c;
+}
+
+.index-text {
+    margin-left: 200px; 
+   
+}
+
+.summary-border {
+    border: 3px solid red;
+    border-radius: 15px;
+    display: inline-block;
+    padding-inline: 70px;
+    padding-bottom: 5px;
+    padding-top: 5px;
 }
