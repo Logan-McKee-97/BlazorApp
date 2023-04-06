@@ -23,7 +23,7 @@
 </div>
 
 <h1 class="my-5 py-3 fs-1 fw-bold">Payment</h1>
-<div class="lh-lg fs-3 my-3">Enter your payment details below:</div>
+<div class="lh-lg fs-3 my-3">Enter your payment details below:   <img src="creditcard2.jpg">
 <EditForm Model="@paymentDetails">
 
 <p class="fw-bold text-danger fs-5">@check</p>
@@ -33,8 +33,10 @@
 <p class="fw-bold text-danger fs-5">@check5</p>
 <p class="fw-bold text-danger fs-5">@check6</p>
 <p class="fw-bold text-danger fs-5">@check7</p>
-<input class="form-control form-control-lg my-5 py-3" type="text" placeholder="Name on Card" @bind="paymentDetails.cardName" />
-<input class="form-control form-control-lg my-5 py-3" type="text" placeholder="Card Number" @bind="paymentDetails.cardNumber" />
+<div class="me-2"><label for="ccname">Name on card:</label>
+<input class="w50" id="ccname" type="text" placeholder="Name on Card" @bind="paymentDetails.cardName" /></div>
+<div class="input-text"><label for="ccnumber">Credit Card Number:</label>
+<input class="w50" id="ccnumber" type="text" placeholder="Card Number" @bind="paymentDetails.cardNumber" /></div>
 <input class="form-control form-control-lg my-5 py-3" type="text" placeholder="Expiry Date" @bind="paymentDetails.expDate" />
 <input class="form-control form-control-lg my-5 py-3" type="text" placeholder="CVC" @bind="paymentDetails.cvc" />
  <button type="button" class="btn btn-danger my-4 ms-5 px-5 py-2 fw-bold border border-dark border border-3" @onclick="SubmitDetails">Pay Now</button>
