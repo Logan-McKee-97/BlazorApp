@@ -22,13 +22,16 @@
 {
 
 
-
+  private string? maskedString;
+  private string? unmaskedString;
   private string? check;
   private PaymentDetails paymentDetails = new();
 
   private void SubmitDetails()
   {
-    navigationManager.NavigateTo($"/SummaryPayment/{paymentDetails.cardNumber}");
+    unmaskedString = paymentDetails.cardNumber;
+    maskedString = new string('*', 12) + unmaskedString.Substring(12);
+    navigationManager.NavigateTo($"/SummaryPayment/{maskedString}");
   }
 
 
