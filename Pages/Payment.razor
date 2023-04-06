@@ -26,13 +26,14 @@
 <EditForm Model="@paymentDetails" OnValidSubmit="@HandleValidSubmit">
 <DataAnnotationsValidator/>
 <ValidationSummary/>
+<p>@check</p>
 <input class="form-control form-control-lg my-5 py-3" type="text" placeholder="Name on Card" @bind="paymentDetails.cardName" />
 <input class="form-control form-control-lg my-5 py-3" type="text" placeholder="Card Number" @bind="paymentDetails.cardNumber" />
 <input class="form-control form-control-lg my-5 py-3" type="text" placeholder="Expiry Date" @bind="paymentDetails.expDate" />
 <input class="form-control form-control-lg my-5 py-3" type="text" placeholder="CVC" @bind="paymentDetails.cvc" />
 <button type = "submit" class="btn btn-success my-4 ms-5 px-4 py-2 fw-bold border border-dark border border-3">Check Details</button>
  <button type="button" class="btn btn-danger my-4 ms-5 px-5 py-2 fw-bold border border-dark border border-3" @onclick="SubmitDetails">Pay Now</button>
-<p>@check</p>
+
 </EditForm>
 
 @code
@@ -46,12 +47,22 @@
   {
     unmaskedString = paymentDetails.cardNumber;
 
-    if (unmaskedString != null)
+    if(paymentDetails.cardNumber != null && paymentDetails.cardName != null && paymentDetails.expDate != null && paymentDetails.cvc != null)
     {
-      maskedString = new string('*', 12) + unmaskedString.Substring(12);
+         if (unmaskedString != null)
+        {
+          maskedString = new string('*', 12) + unmaskedString.Substring(12);
+        }
+
+        navigationManager.NavigateTo($"/SummaryPayment/{maskedString}");
+        check = string.Empty;
+    }  
+    else 
+    {
+        check = "Couldn't match your details, please try again.";
     }
+
     
-    navigationManager.NavigateTo($"/SummaryPayment/{maskedString}");
   }
 
 
