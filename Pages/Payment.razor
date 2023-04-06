@@ -21,9 +21,10 @@
             </NavLink>
 </div>
 </div>
-
+<div class="index-text">
 <h1 class="my-5 py-3 fs-1 fw-bold">Payment</h1>
-<div class="lh-lg fs-3 my-3">Enter your payment details below:   <img src="creditcard2.jpg">
+<img src="creditcard2.jpg">
+<div class="lh-lg fs-3 my-4 mt-5">Enter your payment details below:   
 <EditForm Model="@paymentDetails">
 
 <p class="fw-bold text-danger fs-5">@check</p>
@@ -33,15 +34,22 @@
 <p class="fw-bold text-danger fs-5">@check5</p>
 <p class="fw-bold text-danger fs-5">@check6</p>
 <p class="fw-bold text-danger fs-5">@check7</p>
-<div class="me-2"><label for="ccname">Name on card:</label>
-<input class="w50" id="ccname" type="text" placeholder="Name on Card" @bind="paymentDetails.cardName" /></div>
-<div class="input-text"><label for="ccnumber">Credit Card Number:</label>
-<input class="w50" id="ccnumber" type="text" placeholder="Card Number" @bind="paymentDetails.cardNumber" /></div>
-<input class="form-control form-control-lg my-5 py-3" type="text" placeholder="Expiry Date" @bind="paymentDetails.expDate" />
-<input class="form-control form-control-lg my-5 py-3" type="text" placeholder="CVC" @bind="paymentDetails.cvc" />
- <button type="button" class="btn btn-danger my-4 ms-5 px-5 py-2 fw-bold border border-dark border border-3" @onclick="SubmitDetails">Pay Now</button>
 
+<div class="me-2 my-2"><label for="ccname">Name on card:</label></div>
+<input class="w50 input-box" id="ccname" type="text" placeholder="Name on Card" @bind="paymentDetails.cardName" />
+<div class="input-text my-2"><label for="ccnumber">Credit Card Number:</label></div>
+<input class="w50" id="ccnumber" type="text" placeholder="Card Number" @bind="paymentDetails.cardNumber" />
+<div class="input-text my-2"><label for="expirydate">Expiry:</label></div>
+<input class="w50" id="expirydate" type="text" placeholder="Expiry Date" @bind="paymentDetails.expDate" />
+<div class="my-2"><label for="cvc">CVC</label></div>
+<input class="w50" id="cvc" type="text" placeholder="CVC" @bind="paymentDetails.cvc" />
+<div class="d-flex-column">
+ <button type="button" class="btn btn-danger my-5 ms-5 px-5 py-3 fw-bold border border-dark border border-3" @onclick="SubmitDetails">Pay Now</button>
+ </div>
 </EditForm>
+</div>
+</div>
+
 
 @code
 {
