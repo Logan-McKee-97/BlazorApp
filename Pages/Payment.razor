@@ -1,6 +1,7 @@
 @page "/payment"
 @inject NavigationManager navigationManager
 @inject NavigationManager NavManager
+@using System.Text.RegularExpressions
 
 <PageTitle>Payment</PageTitle>
 <div class="bg-dark header-image">
@@ -23,15 +24,19 @@
 
 <h1 class="my-5 py-3 fs-1 fw-bold">Payment</h1>
 <div class="lh-lg fs-3 my-3">Enter your payment details below:</div>
-<EditForm Model="@paymentDetails" OnValidSubmit="@HandleValidSubmit">
-<DataAnnotationsValidator/>
-<ValidationSummary/>
-<p>@check</p>
+<EditForm Model="@paymentDetails">
+
+<p class="fw-bold text-danger fs-5">@check</p>
+<p class="fw-bold text-danger fs-5">@check2</p>
+<p class="fw-bold text-danger fs-5">@check3</p>
+<p class="fw-bold text-danger fs-5">@check4</p>
+<p class="fw-bold text-danger fs-5">@check5</p>
+<p class="fw-bold text-danger fs-5">@check6</p>
+<p class="fw-bold text-danger fs-5">@check7</p>
 <input class="form-control form-control-lg my-5 py-3" type="text" placeholder="Name on Card" @bind="paymentDetails.cardName" />
 <input class="form-control form-control-lg my-5 py-3" type="text" placeholder="Card Number" @bind="paymentDetails.cardNumber" />
 <input class="form-control form-control-lg my-5 py-3" type="text" placeholder="Expiry Date" @bind="paymentDetails.expDate" />
 <input class="form-control form-control-lg my-5 py-3" type="text" placeholder="CVC" @bind="paymentDetails.cvc" />
-<button type = "submit" class="btn btn-success my-4 ms-5 px-4 py-2 fw-bold border border-dark border border-3">Check Details</button>
  <button type="button" class="btn btn-danger my-4 ms-5 px-5 py-2 fw-bold border border-dark border border-3" @onclick="SubmitDetails">Pay Now</button>
 
 </EditForm>
@@ -41,41 +46,117 @@
   private string? maskedString;
   private string? unmaskedString;
   private string? check;
+  private string? check2;
+  private string? check3;
+  private string? check4;
+  private string? check5;
+  private string? check6;
+  private string? check7;
   private PaymentDetails paymentDetails = new();
 
   private void SubmitDetails()
   {
     unmaskedString = paymentDetails.cardNumber;
 
-    if(paymentDetails.cardNumber != null && paymentDetails.cardName != null && paymentDetails.expDate != null && paymentDetails.cvc != null)
+    bool hasPassedName = false;
+    bool hasPassedNumber = false;
+    bool hasPassedCvc = false;
+    bool hasPassedExpiry = false;
+
+    if (paymentDetails.cardName == null || paymentDetails.cvc == null || paymentDetails.cardNumber== null || paymentDetails.expDate == null)
     {
-         if (unmaskedString != null)
+      check = "Error: Please ensure you complete all fields.";
+    }
+    if (paymentDetails.cardName != null && paymentDetails.cvc != null && paymentDetails.cardNumber != null && paymentDetails.expDate != null) {
+      check = string.Empty;
+    }
+    
+
+  //card name validation
+    if (paymentDetails.cardName != null) {
+      bool isNameNumber = false;
+      Int128 result;
+      isNameNumber = Int128.TryParse(paymentDetails.cardName, out result);
+
+    if (isNameNumber == true) {
+      check2 = "Error: You have entered an invalid name: names cannot be numbers.";
+    } else if (isNameNumber == false){
+      hasPassedName = true;
+      check2 = string.Empty;
+    }
+    }
+    
+    if (paymentDetails.cardNumber != null) {
+      bool isCardNumber = false;
+      Int128 result;
+      isCardNumber = Int128.TryParse(paymentDetails.cardNumber, out result);
+
+      if ((paymentDetails.cardNumber.Trim().Length < 16 || paymentDetails.cardNumber.Trim().Length > 16)) {
+        check3 = "Error: Incorrect card number, card number must be 16 digits.";
+      
+      if (isCardNumber == false) {
+        check4 = "Error: Incorrect card number, card number cannot be a word.";
+      }
+      } if (paymentDetails.cardNumber.Trim().Length == 16) {
+        check3 = string.Empty;
+      } if (isCardNumber == true){
+        check4 = string.Empty;
+      } if (paymentDetails.cardNumber.Trim().Length == 16 && isCardNumber == true)
+      {
+        hasPassedNumber = true;
+      }
+    }
+
+    if (paymentDetails.cvc != null) {
+      bool isCvcNumber = false;
+      Int128 result;
+      isCvcNumber = Int128.TryParse(paymentDetails.cvc, out result);
+
+      if ((paymentDetails.cvc.Trim().Length < 3 || paymentDetails.cvc.Trim().Length > 3)) {
+        check5 = "Error: Incorrect CVC, CVC must be 3 digits.";
+      
+      if (isCvcNumber == false) {
+        check6 = "Error: Incorrect CVC, CVC cannot be a word.";
+      }
+      } if (paymentDetails.cvc.Trim().Length == 3) {
+        check5 = string.Empty;
+      } if (isCvcNumber == true){
+        check6 = string.Empty;
+      } if (paymentDetails.cvc.Trim().Length == 3 && isCvcNumber == true) {
+        hasPassedCvc = true;
+      }
+
+    } 
+    if (paymentDetails.expDate != null) {
+      bool isMatch = Regex.IsMatch(paymentDetails.expDate, @"^(0[1-9]|1[0-2])\/([2-9][3-9])$");
+      if (isMatch == false) {
+        check7 = "Error: Invalid expiry date.";
+      } else {
+        check7 = string.Empty;
+        hasPassedExpiry = true;
+      }
+    } 
+
+ 
+
+    if(hasPassedExpiry == true && hasPassedCvc == true && hasPassedName == true && hasPassedNumber == true)
+    {
+        if (unmaskedString != null)
         {
-          maskedString = new string('*', 12) + unmaskedString.Substring(12);
+          //maskedString = new string('*', 12) + unmaskedString.Substring(12);
+          maskedString = unmaskedString.Substring(12,4);
         }
+        
 
         navigationManager.NavigateTo($"/SummaryPayment/{maskedString}");
-        check = string.Empty;
-    }  
-    else 
-    {
-        check = "All fields are MANDATORY, please try again.";
     }
-
+        
     
-  }
-
-
-  private void HandleValidSubmit()
-  {
-    if(paymentDetails.cardNumber != null && paymentDetails.cardName != null && paymentDetails.expDate != null && paymentDetails.cvc != null)
-    {
-         check = string.Empty;
-    }  
-    else 
-    {
-        check = "Couldn't match your details, please try again.";
-    }
-  }
-
+   
 }
+}
+  
+
+
+
+
