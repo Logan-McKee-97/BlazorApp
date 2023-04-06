@@ -53,36 +53,15 @@
 </div>
 
 @code {
-    private bool isWrong;
     private string? referenceNumber;
-
-    private string? Address;
 
     private string? checkFail;
 
     private string? Postcode;
     private List<TodoItem> todoItems = new List<TodoItem>(); 
 
-    private string? newTodo;
-
     private bool shouldRender;
     protected override bool ShouldRender() => shouldRender;
-
-    protected override async Task OnInitializedAsync()
-    {
-        /*var itemList = (await todoItemService.GetTodoItems()).ToList();
-
-        if (itemList == null)
-        {
-            todoItems.Clear();
-        }
-        else
-        {
-            todoItems = itemList;
-        }
-
-        shouldRender = true;*/
-    }
 
     private async Task CheckRefNum()
     {
@@ -122,62 +101,6 @@
 
         shouldRender = true;
 
-
-    }
-    private async Task AddTodoItem()
-    {
-        TodoItem newTodoItem = new TodoItem();
-        newTodoItem.Name = newTodo;
-        //newTodoItem.IsComplete = false;
-
-        var itemList = (await todoItemService.AddTodoItem(newTodoItem)).ToList();
-
-        if (itemList == null)
-        {
-            //todoItems.Clear();
-        }
-        else
-        {
-            todoItems = itemList;
-        }
-
-    }
-
-    private async Task DeleteTodoItem(TodoItem todoItem)
-    {
-        TodoItem newTodoItem = new TodoItem();
-        newTodoItem.Name = newTodo;
-        //newTodoItem.IsComplete = false;
-
-        var itemList = (await todoItemService.DeleteTodoItem(todoItem)).ToList();
-
-        if (itemList == null)
-        {
-            //todoItems.Clear();
-        }
-        else
-        {
-            todoItems = itemList;
-        }
-
-    }
-
-    private async Task UpdateTodoItem(TodoItem todoItem)
-    {
-        TodoItem newTodoItem = new TodoItem();
-        newTodoItem.Name = newTodo;
-        //newTodoItem.IsComplete = false;
-
-        var itemList = (await todoItemService.UpdateTodoItem(todoItem)).ToList();
-
-        if (itemList == null)
-        {
-            //todoItems.Clear();
-        }
-        else
-        {
-            todoItems = itemList;
-        }
 
     }
     
